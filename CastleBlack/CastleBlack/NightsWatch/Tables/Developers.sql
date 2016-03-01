@@ -1,0 +1,6 @@
+﻿CREATE TABLE [NightsWatch].[Developers]
+(
+	[Id] INT IDENTITY (1, 1) NOT NULL,
+	[First Name] NVARCHAR(400) NOT NULL,
+	[Last Name] NVARCHAR(400) NOT NULL,
+CONSTRAINT [PK_Developers] PRIMARY KEY CLUSTERED ([Id] ASC));

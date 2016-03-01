@@ -1,0 +1,5 @@
+﻿CREATE TABLE [NightsWatch].[Checklists](
+	[Id] INT IDENTITY (1, 1) NOT NULL,
+	[Category] NVARCHAR(400) NOT NULL,
+	[ChecklistName] NVARCHAR(400) NOT NULL
+CONSTRAINT [PK_Checklists] PRIMARY KEY CLUSTERED ([Id] ASC));
