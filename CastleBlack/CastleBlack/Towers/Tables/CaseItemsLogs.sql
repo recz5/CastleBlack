@@ -1,8 +1,9 @@
-﻿CREATE TABLE [dbo].[CaseItemsLogs]
+﻿CREATE TABLE [Towers].[CaseItemsLogs]
 (
 	[LogId] BIGINT IDENTITY (1, 1) NOT NULL,
 	[LogDtTm] DATE NOT NULL,
-	[SalesForce Case ID] NVARCHAR(400) NOT NULL,
+	[SalesForce Case ID] INT NOT NULL,
 	[Developer ID] INT NOT NULL,
-	[QA ID] INT NOT NULL
+	[QA ID] INT NOT NULL,
+	[Event] NVARCHAR(50) NOT NULL
 CONSTRAINT [PK_CaseItemsLogs] PRIMARY KEY CLUSTERED ([LogId] ASC));

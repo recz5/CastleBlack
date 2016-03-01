@@ -16,8 +16,9 @@ namespace CastleBlackApplication
     {
         public long LogId { get; set; }
         public System.DateTime LogDtTm { get; set; }
-        public string SalesForce_Case_ID { get; set; }
+        public int SalesForce_Case_ID { get; set; }
         public int Developer_ID { get; set; }
         public int QA_ID { get; set; }
+        public string Event { get; set; }
     }
 }

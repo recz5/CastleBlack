@@ -15,11 +15,11 @@ namespace CastleBlackApplication
     public partial class CaseItem
     {
         public long Id { get; set; }
-        public string SalesForce_Case_ID { get; set; }
-        public System.DateTime SalesForce_Due_Date { get; set; }
+        public int SalesForce_Case_ID { get; set; }
+        public Nullable<System.DateTime> SalesForce_Due_Date { get; set; }
         public int Developer_ID { get; set; }
         public int QA_ID { get; set; }
-        public System.DateTime Create_Dttm { get; set; }
         public System.DateTime LastUpdateDttm { get; set; }
+        public System.DateTime Creation_Dttm { get; set; }
     }
 }

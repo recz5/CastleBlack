@@ -6,12 +6,12 @@
     <edmx:StorageModels>
     <Schema Namespace="CastleBlackModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CastleBlackModelStoreContainer">
-          <EntitySet Name="CaseItemsLogs" EntityType="CastleBlackModel.Store.CaseItemsLogs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Checklists" EntityType="CastleBlackModel.Store.Checklists" store:Type="Tables" Schema="NightsWatch" />
           <EntitySet Name="Developers" EntityType="CastleBlackModel.Store.Developers" store:Type="Tables" Schema="NightsWatch" />
           <EntitySet Name="QAs" EntityType="CastleBlackModel.Store.QAs" store:Type="Tables" Schema="NightsWatch" />
           <EntitySet Name="CaseItemChecklists" EntityType="CastleBlackModel.Store.CaseItemChecklists" store:Type="Tables" Schema="Towers" />
           <EntitySet Name="CaseItems" EntityType="CastleBlackModel.Store.CaseItems" store:Type="Tables" Schema="Towers" />
+          <EntitySet Name="CaseItemsLogs" EntityType="CastleBlackModel.Store.CaseItemsLogs" store:Type="Tables" Schema="Towers" />
           <EntitySet Name="BlankWorkItem" EntityType="CastleBlackModel.Store.BlankWorkItem" store:Type="Views" store:Schema="NightsWatch" store:Name="BlankWorkItem">
             <DefiningQuery>SELECT 
       [BlankWorkItem].[SalesForce Case ID] AS [SalesForce Case ID], 
@@ -22,16 +22,6 @@
       FROM [NightsWatch].[BlankWorkItem] AS [BlankWorkItem]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-        <EntityType Name="CaseItemsLogs">
-          <Key>
-            <PropertyRef Name="LogId" />
-          </Key>
-          <Property Name="LogId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="LogDtTm" Type="date" Nullable="false" />
-          <Property Name="SalesForce Case ID" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="Developer ID" Type="int" Nullable="false" />
-          <Property Name="QA ID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Checklists">
           <Key>
             <PropertyRef Name="Id" />
@@ -53,7 +43,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="400" />
           <Property Name="PasswordHash" Type="binary" Nullable="false" MaxLength="64" />
           <Property Name="First Name" Type="nvarchar" Nullable="false" MaxLength="400" />
           <Property Name="Last Name" Type="nvarchar" Nullable="false" MaxLength="400" />
@@ -63,23 +53,36 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="SalesForce Case ID" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="ChecklistName" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="Error_Comment" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="Error" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="SalesForce Case ID" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="80" />
+          <Property Name="ChecklistName" Type="nvarchar" Nullable="false" MaxLength="320" />
+          <Property Name="Error_Comment" Type="nvarchar" MaxLength="400" />
+          <Property Name="Error" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="LastUpdatedTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CaseItems">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="SalesForce Case ID" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="SalesForce Due Date" Type="date" Nullable="false" />
+          <Property Name="SalesForce Case ID" Type="int" Nullable="false" />
+          <Property Name="SalesForce Due Date" Type="date" />
           <Property Name="Developer ID" Type="int" Nullable="false" />
           <Property Name="QA ID" Type="int" Nullable="false" />
-          <Property Name="Create Dttm" Type="datetime" Nullable="false" />
+          <Property Name="Creation Dttm" Type="datetime" Nullable="false" />
           <Property Name="LastUpdateDttm" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CaseItemsLogs">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LogDtTm" Type="date" Nullable="false" />
+          <Property Name="SalesForce Case ID" Type="int" Nullable="false" />
+          <Property Name="Developer ID" Type="int" Nullable="false" />
+          <Property Name="QA ID" Type="int" Nullable="false" />
+          <Property Name="Event" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'CastleBlack.NightsWatch.BlankWorkItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -88,14 +91,12 @@
           <Key>
             <PropertyRef Name="Category" />
             <PropertyRef Name="ChecklistName" />
-            
-            
           </Key>
           <Property Name="SalesForce Case ID" Type="int" />
           <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="400" />
           <Property Name="ChecklistName" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="Error_Comment" Type="varchar" Nullable="false" MaxLength="1" />
-          <Property Name="Error" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="Error_Comment" Type="nvarchar" MaxLength="400" />
+          <Property Name="Error" Type="nvarchar" MaxLength="400" />
         </EntityType>
         <Function Name="addUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NightsWatch">
           <Parameter Name="username" Type="nvarchar" Mode="In" />
@@ -121,8 +122,8 @@
             <Parameter Name="lastName" Mode="In" Type="String" />
             <Parameter Name="responseMessage" Mode="InOut" Type="String" />
           </FunctionImport>
-          <EntitySet Name="CaseItemsLogs" EntityType="CastleBlackModel.CaseItemsLog" />
           <EntitySet Name="BlankWorkItems" EntityType="CastleBlackModel.BlankWorkItem" />
+          <EntitySet Name="CaseItemsLogs" EntityType="CastleBlackModel.CaseItemsLog" />
         </EntityContainer>
         <EntityType Name="Checklist">
           <Key>
@@ -145,7 +146,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
           <Property Name="PasswordHash" Type="Binary" Nullable="false" MaxLength="64" FixedLength="true" />
           <Property Name="First_Name" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
           <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
@@ -155,33 +156,25 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="SalesForce_Case_ID" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
-          <Property Name="Category" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
-          <Property Name="ChecklistName" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
-          <Property Name="Error_Comment" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
-          <Property Name="Error" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="SalesForce_Case_ID" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
+          <Property Name="ChecklistName" Type="String" Nullable="false" MaxLength="320" Unicode="true" FixedLength="false" />
+          <Property Name="Error_Comment" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Name="Error" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Type="DateTime" Name="LastUpdatedTime" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ContextKey" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CaseItem">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="SalesForce_Case_ID" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
-          <Property Name="SalesForce_Due_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SalesForce_Case_ID" Type="Int32" Nullable="false" />
+          <Property Name="SalesForce_Due_Date" Type="DateTime" Precision="0" />
           <Property Name="Developer_ID" Type="Int32" Nullable="false" />
           <Property Name="QA_ID" Type="Int32" Nullable="false" />
-          <Property Name="Create_Dttm" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdateDttm" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="CaseItemsLog">
-          <Key>
-            <PropertyRef Name="LogId" />
-          </Key>
-          <Property Type="Int64" Name="LogId" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="LogDtTm" Nullable="false" Precision="0" />
-          <Property Type="String" Name="SalesForce_Case_ID" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Developer_ID" Nullable="false" />
-          <Property Type="Int32" Name="QA_ID" Nullable="false" />
+          <Property Type="DateTime" Name="Creation_Dttm" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="BlankWorkItem">
           <Key>
@@ -191,8 +184,19 @@
           <Property Type="Int32" Name="SalesForce_Case_ID" />
           <Property Type="String" Name="Category" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ChecklistName" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Error_Comment" Nullable="false" />
-          <Property Type="String" Name="Error" Nullable="false" />
+          <Property Type="String" Name="Error_Comment" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Error" MaxLength="400" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CaseItemsLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Type="Int64" Name="LogId" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="LogDtTm" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="SalesForce_Case_ID" Nullable="false" />
+          <Property Type="Int32" Name="Developer_ID" Nullable="false" />
+          <Property Type="Int32" Name="QA_ID" Nullable="false" />
+          <Property Type="String" Name="Event" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -232,6 +236,8 @@
           <EntitySetMapping Name="CaseItemChecklists">
             <EntityTypeMapping TypeName="CastleBlackModel.CaseItemChecklist">
               <MappingFragment StoreEntitySet="CaseItemChecklists">
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="LastUpdatedTime" ColumnName="LastUpdatedTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SalesForce_Case_ID" ColumnName="SalesForce Case ID" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
@@ -244,28 +250,17 @@
           <EntitySetMapping Name="CaseItems">
             <EntityTypeMapping TypeName="CastleBlackModel.CaseItem">
               <MappingFragment StoreEntitySet="CaseItems">
+                <ScalarProperty Name="Creation_Dttm" ColumnName="Creation Dttm" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SalesForce_Case_ID" ColumnName="SalesForce Case ID" />
                 <ScalarProperty Name="SalesForce_Due_Date" ColumnName="SalesForce Due Date" />
                 <ScalarProperty Name="Developer_ID" ColumnName="Developer ID" />
                 <ScalarProperty Name="QA_ID" ColumnName="QA ID" />
-                <ScalarProperty Name="Create_Dttm" ColumnName="Create Dttm" />
                 <ScalarProperty Name="LastUpdateDttm" ColumnName="LastUpdateDttm" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="addUser" FunctionName="CastleBlackModel.Store.addUser" />
-          <EntitySetMapping Name="CaseItemsLogs">
-            <EntityTypeMapping TypeName="CastleBlackModel.CaseItemsLog">
-              <MappingFragment StoreEntitySet="CaseItemsLogs">
-                <ScalarProperty Name="QA_ID" ColumnName="QA ID" />
-                <ScalarProperty Name="Developer_ID" ColumnName="Developer ID" />
-                <ScalarProperty Name="SalesForce_Case_ID" ColumnName="SalesForce Case ID" />
-                <ScalarProperty Name="LogDtTm" ColumnName="LogDtTm" />
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BlankWorkItems">
             <EntityTypeMapping TypeName="CastleBlackModel.BlankWorkItem">
               <MappingFragment StoreEntitySet="BlankWorkItem">
@@ -274,6 +269,18 @@
                 <ScalarProperty Name="ChecklistName" ColumnName="ChecklistName" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="SalesForce_Case_ID" ColumnName="SalesForce Case ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseItemsLogs">
+            <EntityTypeMapping TypeName="CastleBlackModel.CaseItemsLog">
+              <MappingFragment StoreEntitySet="CaseItemsLogs">
+                <ScalarProperty Name="Event" ColumnName="Event" />
+                <ScalarProperty Name="QA_ID" ColumnName="QA ID" />
+                <ScalarProperty Name="Developer_ID" ColumnName="Developer ID" />
+                <ScalarProperty Name="SalesForce_Case_ID" ColumnName="SalesForce Case ID" />
+                <ScalarProperty Name="LogDtTm" ColumnName="LogDtTm" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

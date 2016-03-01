@@ -15,10 +15,12 @@ namespace CastleBlackApplication
     public partial class CaseItemChecklist
     {
         public long Id { get; set; }
-        public string SalesForce_Case_ID { get; set; }
+        public int SalesForce_Case_ID { get; set; }
         public string Category { get; set; }
         public string ChecklistName { get; set; }
         public string Error_Comment { get; set; }
         public string Error { get; set; }
+        public System.DateTime LastUpdatedTime { get; set; }
+        public string ContextKey { get; set; }
     }
 }

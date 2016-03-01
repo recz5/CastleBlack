@@ -33,8 +33,8 @@ namespace CastleBlackApplication
         public DbSet<QA> QAs { get; set; }
         public DbSet<CaseItemChecklist> CaseItemChecklists { get; set; }
         public DbSet<CaseItem> CaseItems { get; set; }
-        public DbSet<CaseItemsLog> CaseItemsLogs { get; set; }
         public DbSet<BlankWorkItem> BlankWorkItems { get; set; }
+        public DbSet<CaseItemsLog> CaseItemsLogs { get; set; }
     
         public virtual int addUser(string username, string password, string firstName, string lastName, ObjectParameter responseMessage)
         {

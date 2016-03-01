@@ -68,6 +68,8 @@
     <Folder Include="NightsWatch\Programmability" />
     <Folder Include="NightsWatch\Programmability\Stored Procedure" />
     <Folder Include="NightsWatch\Views" />
+    <Folder Include="Towers\User Defined Tables" />
+    <Folder Include="Towers\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="NightsWatch\NightsWatch.sql" />
@@ -81,6 +83,9 @@
     <Build Include="Towers\Tables\CaseItemsLogs.sql" />
     <Build Include="NightsWatch\Programmability\Stored Procedure\addUser.sql" />
     <Build Include="NightsWatch\Views\BlankWorkItem.sql" />
+    <Build Include="Towers\User Defined Tables\CaseItemChecklistsTypeUpsert.sql" />
+    <Build Include="Towers\User Defined Tables\CaseItemsTypeUpsert.sql" />
+    <Build Include="Towers\Stored Procedures\proc_CaseItemChecklistsDoUpsert.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />

@@ -69,7 +69,7 @@ namespace CastleBlackApplication.View
 
         private void existing_Button_Click(object sender, RoutedEventArgs e)
         {
-            NewCaseWindow main = new NewCaseWindow();
+            ExistingCaseWindow main = new ExistingCaseWindow();
             main.Show();
             this.Close();
         }

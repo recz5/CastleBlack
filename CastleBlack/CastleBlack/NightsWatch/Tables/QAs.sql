@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [NightsWatch].[QAs]
 (
 	[Id] INT IDENTITY (1, 1) NOT NULL,
-	[UserName] NVARCHAR(40) NOT NULL,
+	[UserName] NVARCHAR(400) NOT NULL,
 	[PasswordHash] BINARY(64) NOT NULL,
 	[First Name] NVARCHAR(400) NOT NULL,
 	[Last Name] NVARCHAR(400) NOT NULL
