@@ -15,6 +15,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace CastleBlackApplication.View
 {
@@ -291,9 +293,21 @@ namespace CastleBlackApplication.View
 
         private void SaveToDatabase(DataTable tbl)
         {
-            string conn = "Server={TARGET_SERVER};Database=CastleBlack;Initial Catalog=master;Integrated Security=True;Connect Timeout=2";
+            SqlConnection connection = (SqlConnection)cbEntities.Database.Connection;
 
-            SQLHelper.UpsertDataTable(conn.Replace("{TARGET_SERVER}", Environment.MachineName), tbl, "[CastleBlack].[Towers].[proc_CaseItemChecklistsDoUpsert]");
+            SqlCommand command = new SqlCommand("[CastleBlack].[Towers].[proc_CaseItemChecklistsDoUpsert]", connection);
+
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.Add(new SqlParameter("@tvpTable", tbl));
+
+            connection.Open();
+
+            connection.ChangeDatabase("CastleBlack");
+
+            command.ExecuteNonQuery();
+
+            connection.Close();
         }
 
         private void UpdateCaseItem()

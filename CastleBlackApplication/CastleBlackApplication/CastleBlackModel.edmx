@@ -4,68 +4,51 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CastleBlackModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="CastleBlackModelStoreContainer">
-          <EntitySet Name="Checklists" EntityType="CastleBlackModel.Store.Checklists" store:Type="Tables" Schema="NightsWatch" />
-          <EntitySet Name="Developers" EntityType="CastleBlackModel.Store.Developers" store:Type="Tables" Schema="NightsWatch" />
-          <EntitySet Name="QAs" EntityType="CastleBlackModel.Store.QAs" store:Type="Tables" Schema="NightsWatch" />
-          <EntitySet Name="CaseItemChecklists" EntityType="CastleBlackModel.Store.CaseItemChecklists" store:Type="Tables" Schema="Towers" />
-          <EntitySet Name="CaseItems" EntityType="CastleBlackModel.Store.CaseItems" store:Type="Tables" Schema="Towers" />
-          <EntitySet Name="CaseItemsLogs" EntityType="CastleBlackModel.Store.CaseItemsLogs" store:Type="Tables" Schema="Towers" />
-          <EntitySet Name="BlankWorkItem" EntityType="CastleBlackModel.Store.BlankWorkItem" store:Type="Views" store:Schema="NightsWatch" store:Name="BlankWorkItem">
-            <DefiningQuery>SELECT 
-      [BlankWorkItem].[SalesForce Case ID] AS [SalesForce Case ID], 
-      [BlankWorkItem].[Category] AS [Category], 
-      [BlankWorkItem].[ChecklistName] AS [ChecklistName], 
-      [BlankWorkItem].[Error_Comment] AS [Error_Comment], 
-      [BlankWorkItem].[Error] AS [Error]
-      FROM [NightsWatch].[BlankWorkItem] AS [BlankWorkItem]</DefiningQuery>
-          </EntitySet>
-        </EntityContainer>
+    <Schema Namespace="CastleBlackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Checklists">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="ChecklistName" Type="nvarchar" Nullable="false" MaxLength="400" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="ChecklistName" Type="nvarchar" MaxLength="400" Nullable="false" />
         </EntityType>
         <EntityType Name="Developers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="First Name" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="Last Name" Type="nvarchar" Nullable="false" MaxLength="400" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Last Name" Type="nvarchar" MaxLength="400" Nullable="false" />
         </EntityType>
         <EntityType Name="QAs">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="PasswordHash" Type="binary" Nullable="false" MaxLength="64" />
-          <Property Name="First Name" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="Last Name" Type="nvarchar" Nullable="false" MaxLength="400" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="PasswordHash" Type="binary" MaxLength="64" Nullable="false" />
+          <Property Name="First Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Last Name" Type="nvarchar" MaxLength="400" Nullable="false" />
         </EntityType>
         <EntityType Name="CaseItemChecklists">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="SalesForce Case ID" Type="int" Nullable="false" />
-          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="80" />
-          <Property Name="ChecklistName" Type="nvarchar" Nullable="false" MaxLength="320" />
+          <Property Name="Category" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="ChecklistName" Type="nvarchar" MaxLength="320" Nullable="false" />
           <Property Name="Error_Comment" Type="nvarchar" MaxLength="400" />
-          <Property Name="Error" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="Error" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="LastUpdatedTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CaseItems">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SalesForce Case ID" Type="int" Nullable="false" />
           <Property Name="SalesForce Due Date" Type="date" />
           <Property Name="Developer ID" Type="int" Nullable="false" />
@@ -77,24 +60,23 @@
           <Key>
             <PropertyRef Name="LogId" />
           </Key>
-          <Property Name="LogId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LogDtTm" Type="date" Nullable="false" />
           <Property Name="SalesForce Case ID" Type="int" Nullable="false" />
           <Property Name="Developer ID" Type="int" Nullable="false" />
           <Property Name="QA ID" Type="int" Nullable="false" />
-          <Property Name="Event" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Event" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'CastleBlack.NightsWatch.BlankWorkItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'CastleBlack.NightsWatch.BlankWorkItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="BlankWorkItem">
           <Key>
             <PropertyRef Name="Category" />
             <PropertyRef Name="ChecklistName" />
           </Key>
           <Property Name="SalesForce Case ID" Type="int" />
-          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="ChecklistName" Type="nvarchar" Nullable="false" MaxLength="400" />
+          <Property Name="Category" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="ChecklistName" Type="nvarchar" MaxLength="400" Nullable="false" />
           <Property Name="Error_Comment" Type="nvarchar" MaxLength="400" />
           <Property Name="Error" Type="nvarchar" MaxLength="400" />
         </EntityType>
@@ -105,6 +87,24 @@
           <Parameter Name="lastName" Type="nvarchar" Mode="In" />
           <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
         </Function>
+        <Function Name="proc_CaseItemChecklistsDoUpsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Towers" />
+        <EntityContainer Name="CastleBlackModelStoreContainer">
+          <EntitySet Name="Checklists" EntityType="Self.Checklists" Schema="NightsWatch" store:Type="Tables" />
+          <EntitySet Name="Developers" EntityType="Self.Developers" Schema="NightsWatch" store:Type="Tables" />
+          <EntitySet Name="QAs" EntityType="Self.QAs" Schema="NightsWatch" store:Type="Tables" />
+          <EntitySet Name="CaseItemChecklists" EntityType="Self.CaseItemChecklists" Schema="Towers" store:Type="Tables" />
+          <EntitySet Name="CaseItems" EntityType="Self.CaseItems" Schema="Towers" store:Type="Tables" />
+          <EntitySet Name="CaseItemsLogs" EntityType="Self.CaseItemsLogs" Schema="Towers" store:Type="Tables" />
+          <EntitySet Name="BlankWorkItem" EntityType="Self.BlankWorkItem" store:Type="Views" store:Schema="NightsWatch">
+            <DefiningQuery>SELECT 
+[BlankWorkItem].[SalesForce Case ID] AS [SalesForce Case ID], 
+[BlankWorkItem].[Category] AS [Category], 
+[BlankWorkItem].[ChecklistName] AS [ChecklistName], 
+[BlankWorkItem].[Error_Comment] AS [Error_Comment], 
+[BlankWorkItem].[Error] AS [Error]
+FROM [NightsWatch].[BlankWorkItem] AS [BlankWorkItem]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -124,6 +124,7 @@
           </FunctionImport>
           <EntitySet Name="BlankWorkItems" EntityType="CastleBlackModel.BlankWorkItem" />
           <EntitySet Name="CaseItemsLogs" EntityType="CastleBlackModel.CaseItemsLog" />
+          <FunctionImport Name="proc_CaseItemChecklistsDoUpsert" />
         </EntityContainer>
         <EntityType Name="Checklist">
           <Key>
@@ -284,6 +285,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_CaseItemChecklistsDoUpsert" FunctionName="CastleBlackModel.Store.proc_CaseItemChecklistsDoUpsert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -301,6 +303,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

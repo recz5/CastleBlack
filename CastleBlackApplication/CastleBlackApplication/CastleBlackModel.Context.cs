@@ -56,5 +56,10 @@ namespace CastleBlackApplication
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("addUser", usernameParameter, passwordParameter, firstNameParameter, lastNameParameter, responseMessage);
         }
+    
+        public virtual int proc_CaseItemChecklistsDoUpsert()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_CaseItemChecklistsDoUpsert");
+        }
     }
 }
