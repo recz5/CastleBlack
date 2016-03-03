@@ -2614,7 +2614,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>VIZCONDE</td><td>0</td><td/><td>295988652</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>NAVEX</td><td>0</td><td/><td>296005235</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>295986572</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>295988620</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>295974125</td></row>
@@ -3716,8 +3716,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>295988620</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>295988620</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>295988620</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.VIZCONDE.com</td><td>0</td><td/><td>295988652</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>VIZCONDE</td><td>0</td><td/><td>295988652</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.NAVEX.com</td><td>0</td><td/><td>296005235</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>NAVEX</td><td>0</td><td/><td>296005235</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>Castle Black</td><td>0</td><td/><td>296009101</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>295988620</td></row>
 	</table>
@@ -3832,7 +3832,7 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
-		<row><td>ARPPRODUCTICON.exe</td><td/><td>C:\Users\vizconder\Desktop\GitHub\CastleBlack\CastleBlackApplication\CastleBlackApplication\NightsWatch.ico</td><td>0</td></row>
+		<row><td>ARPPRODUCTICON.exe</td><td/><td>C:\Users\vizconder\Desktop\GitHub\NewestClone\CastleBlackApplication\CastleBlackApplication\NightsWatch.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
