@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\vizconder\Desktop\CastleBlack Application\CastleBlack Application\CastleBlackApplication\CastleBlackApplication\CastleBlackModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\GitHub\CastleBlack\CastleBlackApplication\CastleBlackApplication\CastleBlackModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
